@@ -9,10 +9,9 @@
 require_once "autoload.inc.php";
 include_once "access.inc.php";
 
-$bodyPath = "/apps/edi-order-status";
-$title = "EDI Order Status";
+$bodyPath = "/apps/app-name";
+$title = "App Title";
 $ui = new WebUI($bodyPath, $title, '', true, 5);
-$ui->bodyClassName = 'container-fluid';
+//$ui->bodyClassName = 'container-fluid';
 $ui->addManifest("./public/js/manifest.json");
-//$ui->AddCSS("./public/styles.css", false, true);
 $ui->Send();
