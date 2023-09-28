@@ -1,3 +1,5 @@
+![Chums Logo](https://intranet.chums.com/images/chums/chums-badge-120x120.png)
+
 # CHUMS App React Presets
 A generic template for creating React apps without the overhead of create-react-app
 
