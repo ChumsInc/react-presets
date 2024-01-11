@@ -2,7 +2,7 @@
   "name": "app-name",
   "version": "1.0.0",
   "dependencies": {
-    "@reduxjs/toolkit": "^1.9.6",
+    "@reduxjs/toolkit": "^2.0.1",
     "chums-components": "github:ChumsInc/chums-components",
     "chums-types": "github:ChumsInc/chums-types",
     "classnames": "^2.3.2",
@@ -12,8 +12,8 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-error-boundary": "^4.0.11",
-    "react-redux": "^8.1.2",
-    "redux": "^4.2.1"
+    "react-redux": "^9.0.4",
+    "redux": "^5.0.1"
   },
   "scripts": {
     "start": "webpack serve --config webpack.dev.js --progress",
