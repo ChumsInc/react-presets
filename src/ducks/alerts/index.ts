@@ -1,12 +1,12 @@
-import {createAction, createReducer, isRejected} from "@reduxjs/toolkit";
+import {AsyncThunk, createAction, createReducer, isRejected, SerializedError, UnknownAction} from "@reduxjs/toolkit";
 import {RootState} from "../../app/configureStore";
-import {RejectedAction} from "@reduxjs/toolkit/dist/query/core/buildThunks";
-import {BasicAlert} from "chums-components";
+import {ErrorAlert} from "chums-components";
 
-export interface ErrorAlert extends BasicAlert {
-    id: number;
-    count: number;
-}
+type GenericAsyncThunk = AsyncThunk<unknown, unknown, any>
+type PendingAction = ReturnType<GenericAsyncThunk['pending']>
+type RejectedAction = ReturnType<GenericAsyncThunk['rejected']>
+type FulfilledAction = ReturnType<GenericAsyncThunk['fulfilled']>
+export type RejectedWithErrorAction = RejectedAction & { error: SerializedError };
 
 export interface AlertsState {
     nextId: number;
@@ -20,22 +20,27 @@ export const initialAlertsState: AlertsState = {
 
 const alertSorter = (a:ErrorAlert, b:ErrorAlert) => a.id - b.id;
 
-export const dismissAlert = createAction<number>('alerts/dismiss');
+export const dismissAlert = createAction<Partial<Pick<ErrorAlert, 'id' | 'context'>>>('alerts/dismiss');
 export const addAlert = createAction<ErrorAlert>('alerts/addAlert');
 
 export const selectAlerts = (state:RootState) => state.alerts.list;
 
-function isErrorAction(action: RejectedAction<any, any>): action is RejectedAction<any, any> {
-    return action?.meta?.requestStatus === 'rejected';
+const isRejectedWithError = (action: UnknownAction): action is RejectedWithErrorAction => {
+    return isRejected(action) && action.error?.message !== undefined;
 }
 
+const isFulfilledAction = (action: UnknownAction): action is FulfilledAction => {
+    return typeof action.type === 'string' && action.type.endsWith('/fulfilled');
+}
 
 const alertsReducer = createReducer(initialAlertsState, (builder) => {
     builder
         .addCase(dismissAlert, (state, action) => {
-            state.list = [
-                ...state.list.filter(alert => alert.id !== action.payload)
-            ].sort(alertSorter);
+            if (action.payload.id) {
+                state.list = state.list.filter(alert => alert.id !== action.payload.id).sort(alertSorter);
+            } else if (action.payload.context) {
+                state.list = state.list.filter(alert => alert.context !== action.payload.context).sort(alertSorter);
+            }
         })
         .addCase(addAlert, (state, action) => {
             const [contextAlert] = state.list.filter(alert => action.payload.context !== '' && alert.context === action.payload.context)
@@ -53,33 +58,27 @@ const alertsReducer = createReducer(initialAlertsState, (builder) => {
                 state.nextId += 1;
             }
         })
-        .addMatcher(isErrorAction, (state, action) => {
+        .addMatcher(isRejectedWithError, (state, action) => {
             const context = action.type.replace('/rejected', '');
-            let [contextAlert] = state.list.filter(alert => alert.context === context);
-            if (!contextAlert) {
-                contextAlert = {id: state.nextId, count: 1, message: action.error.message ?? '', context, color: 'danger'}
-                state.nextId += 1;
+            const contextAlerts = state.list.filter(alert => alert.context === context);
+            let newAlerts: ErrorAlert[] = [];
+            if (contextAlerts.length) {
+                contextAlerts[0].count += 1;
             } else {
-                contextAlert.count += 1;
+                newAlerts.push({context, message: action.error.message ?? '', id: state.nextId, count: 1})
+                state.nextId += 1;
             }
             state.list = [
                 ...state.list.filter(alert => alert.context !== context),
-                contextAlert,
-            ].sort(alertSorter);
+                ...contextAlerts,
+                ...newAlerts
+            ].sort(alertSorter)
         })
-        .addDefaultCase((state, action) => {
-            if (isRejected(action) && action.error) {
-                state.list = [
-                    ...state.list,
-                    {
-                        context: action.type.replace('/rejected', ''),
-                        message: action.error.message ?? '',
-                        id: state.nextId,
-                        count: 1
-                    }
-                ].sort(alertSorter)
-                state.nextId += 1;
-            }
+        .addMatcher(isFulfilledAction, (state, action) => {
+            const context = action.type.replace('/fulfilled', '');
+            state.list = [
+                ...state.list.filter(alert => alert.context !== context),
+            ].sort(alertSorter)
         })
 });
 

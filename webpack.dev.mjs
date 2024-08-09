@@ -1,19 +1,15 @@
-const {merge} = require('webpack-merge');
-const common = require('./webpack.common.js');
-const path = require('node:path');
+import {merge} from 'webpack-merge';
+import common from './webpack.common.mjs';
+import path from 'node:path';
 
 const localProxy = {
-    target: {
-        host: 'localhost',
-        protocol: 'http:',
-        port: 8081
-    },
+    target: 'http://localhost:8081',
     ignorePath: false,
     changeOrigin: true,
     secure: false,
 };
 
-module.exports = merge(common, {
+export default merge(common, {
     mode: 'development',
     devServer: {
         allowedHosts: 'auto',
@@ -23,9 +19,9 @@ module.exports = merge(common, {
             watch: false,
         },
         hot: true,
-        proxy: {
-            '/api': {...localProxy},
-        },
+        proxy: [
+            {context: ['/api'], ...localProxy},
+        ],
         watchFiles: path.join(__dirname, 'src/**/*')
     },
     devtool: 'inline-source-map',

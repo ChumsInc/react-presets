@@ -9,7 +9,7 @@ const AlertList = () => {
     const list = useSelector(selectAlerts);
 
     const dismissHandler = (id: number) => {
-        dispatch(dismissAlert(id));
+        dispatch(dismissAlert({id}));
     }
     return (
         <div>

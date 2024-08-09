@@ -16,8 +16,9 @@
     "redux": "^5.0.1"
   },
   "scripts": {
-    "start": "webpack serve --config webpack.dev.js --progress",
-    "build": "webpack --config webpack.prod.js --progress",
+    "install": "npm init",
+    "start": "webpack serve --config webpack.dev.mjs --progress",
+    "build": "webpack --config webpack.prod.mjs --progress",
     "version": "auto-changelog -p && git add CHANGELOG.md"
   },
   "browserslist": {
@@ -38,7 +39,8 @@
     "@babel/preset-env": "^7.22.20",
     "@babel/preset-react": "^7.22.15",
     "@babel/preset-typescript": "^7.23.0",
-    "@types/node": "^20.7.1",
+    "@eslint/js": "^9.8.0",
+    "@types/node": "^22.1.0",
     "@types/numeral": "^2.0.3",
     "@types/react": "^18.2.23",
     "@types/react-dom": "^18.2.8",
@@ -47,23 +49,30 @@
     "bootstrap": "^5.3.2",
     "bootstrap-icons": "^1.11.1",
     "clean-webpack-plugin": "^4.0.0",
-    "css-loader": "^6.8.1",
-    "sass-loader": "^13.3.2",
-    "style-loader": "^3.3.3",
+    "css-loader": "^7.1.2",
+    "eslint": "^9.8.0",
+    "eslint-plugin-react": "^7.35.0",
+    "globals": "^15.9.0",
+    "sass-loader": "^16.0.0",
+    "style-loader": "^4.0.0",
     "terser-webpack-plugin": "^5.3.9",
     "ts-loader": "^9.4.4",
     "typescript": "^5.2.2",
+    "typescript-eslint": "^8.0.1",
     "webpack": "^5.88.2",
     "webpack-bundle-analyzer": "^4.9.1",
     "webpack-cli": "^5.1.4",
-    "webpack-dev-server": "^4.15.1",
+    "webpack-dev-server": "^5.0.4",
     "webpack-manifest-plugin": "^5.0.0",
-    "webpack-merge": "^5.9.0"
+    "webpack-merge": "^6.0.1"
   },
   "auto-changelog": {
     "template": "changelog-template.hbs",
     "unreleased": true,
     "commitLimit": false,
     "breakingPattern": "BREAKING CHANGE:"
+  },
+  "overrides": {
+    "eslint": "^9.8.0"
   }
 }

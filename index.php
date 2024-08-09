@@ -6,12 +6,22 @@
  * @copyright Copyright &copy; 2012, steve
  */
 
-require_once "autoload.inc.php";
-include_once "access.inc.php";
+use chums\ui\WebUI2;
+use chums\user\Groups;
 
-$bodyPath = "/apps/app-name";
-$title = "App Title";
-$ui = new WebUI($bodyPath, $title, '', true, 5);
-//$ui->bodyClassName = 'container-fluid';
-$ui->addManifest("./public/js/manifest.json");
-$ui->Send();
+require_once ("autoload.inc.php");
+
+/**
+ * @TODO: Assign required roles
+ * @TODO: Assign Page Title
+ * @TODO: Add description if required
+ *
+ * Helpful hint for PHPStorm: set PHP Include Path to /includes of project intranet.chums.com
+ */
+$ui = new WebUI2([
+    'requiredRoles' => [],
+    'title' => "",
+    'description' => ''
+]);
+
+$ui->addManifestJSON('public/js/manifest.json')->render();
