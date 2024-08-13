@@ -13,8 +13,9 @@ Included modules are:
 ## Instructions
 * In GitHub click the "Use this template" button, and "Create a new repository"
 * Check out the new repository via editor of choice, the examples are for PHPStorm/JetBrains
-* Run ```npm install```
+* Run ```npm init```
   * Assign a package name, version, etc.
+* Run ```npm install```
 * Configure PHPStorm
   * set deployment path, eg, /var/www/intranet.chums.com/apps/{app-name}
   * update index.php 
