@@ -14,7 +14,7 @@ export default merge(common, {
     devServer: {
         allowedHosts: 'auto',
         static: {
-            directory: path.join(__dirname, 'public'),
+            directory: path.join(process.cwd(), 'public'),
             serveIndex: true,
             watch: false,
         },
@@ -22,7 +22,7 @@ export default merge(common, {
         proxy: [
             {context: ['/api'], ...localProxy},
         ],
-        watchFiles: path.join(__dirname, 'src/**/*')
+        watchFiles: path.join(process.cwd(), 'src/**/*')
     },
     devtool: 'inline-source-map',
     plugins: []
