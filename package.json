@@ -16,7 +16,6 @@
     "redux": "^5.0.1"
   },
   "scripts": {
-    "install": "npm init",
     "start": "webpack serve --config webpack.dev.mjs --progress",
     "build": "webpack --config webpack.prod.mjs --progress",
     "version": "auto-changelog -p && git add CHANGELOG.md"
