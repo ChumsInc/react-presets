@@ -10,11 +10,6 @@ export default {
                 exclude: /node_modules/,
             },
             {
-                test: /\.js$/,
-                exclude: /node_modules/,
-                use: ['babel-loader']
-            },
-            {
                 test: /\.css$/,
                 use: [
                     {loader: 'style-loader'},
