@@ -6,7 +6,7 @@ A generic template for creating React apps without the overhead of create-react-
 ## Notes
 This includes the basics for publishing an app the Chums Intranet
 Included modules are:
-* Bootstrap 5.3 & Bootstrap Icons, 
+* Bootstrap 5.3 & Bootstrap Icons, React Bootstrap
 * React 18
 * Redux & Toolkit
 

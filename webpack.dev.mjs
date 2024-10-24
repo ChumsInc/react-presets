@@ -1,6 +1,7 @@
 import {merge} from 'webpack-merge';
 import common from './webpack.common.mjs';
 import path from 'node:path';
+import process from 'node:process';
 
 const localProxy = {
     target: 'http://localhost:8081',

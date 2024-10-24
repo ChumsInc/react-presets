@@ -1,12 +1,6 @@
-import {AsyncThunk, createAction, createReducer, isRejected, SerializedError, UnknownAction} from "@reduxjs/toolkit";
+import {createAction, createReducer, isFulfilled, isRejected} from "@reduxjs/toolkit";
 import {RootState} from "../../app/configureStore";
 import {ErrorAlert} from "chums-components";
-
-type GenericAsyncThunk = AsyncThunk<unknown, unknown, any>
-type PendingAction = ReturnType<GenericAsyncThunk['pending']>
-type RejectedAction = ReturnType<GenericAsyncThunk['rejected']>
-type FulfilledAction = ReturnType<GenericAsyncThunk['fulfilled']>
-export type RejectedWithErrorAction = RejectedAction & { error: SerializedError };
 
 export interface AlertsState {
     nextId: number;
@@ -18,20 +12,12 @@ export const initialAlertsState: AlertsState = {
     list: [],
 }
 
-const alertSorter = (a:ErrorAlert, b:ErrorAlert) => a.id - b.id;
+const alertSorter = (a: ErrorAlert, b: ErrorAlert) => a.id - b.id;
 
 export const dismissAlert = createAction<Partial<Pick<ErrorAlert, 'id' | 'context'>>>('alerts/dismiss');
 export const addAlert = createAction<ErrorAlert>('alerts/addAlert');
 
-export const selectAlerts = (state:RootState) => state.alerts.list;
-
-const isRejectedWithError = (action: UnknownAction): action is RejectedWithErrorAction => {
-    return isRejected(action) && action.error?.message !== undefined;
-}
-
-const isFulfilledAction = (action: UnknownAction): action is FulfilledAction => {
-    return typeof action.type === 'string' && action.type.endsWith('/fulfilled');
-}
+export const selectAlerts = (state: RootState) => state.alerts.list;
 
 const alertsReducer = createReducer(initialAlertsState, (builder) => {
     builder
@@ -58,10 +44,10 @@ const alertsReducer = createReducer(initialAlertsState, (builder) => {
                 state.nextId += 1;
             }
         })
-        .addMatcher(isRejectedWithError, (state, action) => {
+        .addMatcher(isRejected, (state, action) => {
             const context = action.type.replace('/rejected', '');
             const contextAlerts = state.list.filter(alert => alert.context === context);
-            let newAlerts: ErrorAlert[] = [];
+            const newAlerts: ErrorAlert[] = [];
             if (contextAlerts.length) {
                 contextAlerts[0].count += 1;
             } else {
@@ -74,7 +60,7 @@ const alertsReducer = createReducer(initialAlertsState, (builder) => {
                 ...newAlerts
             ].sort(alertSorter)
         })
-        .addMatcher(isFulfilledAction, (state, action) => {
+        .addMatcher(isFulfilled, (state, action) => {
             const context = action.type.replace('/fulfilled', '');
             state.list = [
                 ...state.list.filter(alert => alert.context !== context),
