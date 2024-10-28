@@ -34,17 +34,33 @@ export default {
     ],
     optimization: {
         splitChunks: {
+            chunks: 'async',
+            minSize: 20000,
+            minRemainingSize: 0,
+            minChunks: 1,
+            maxAsyncRequests: 30,
+            maxInitialRequests: 30,
+            enforceSizeThreshold: 50000,
             cacheGroups: {
                 defaultVendors: {
-                    test: /[\\/]node_modules[\\/]/,
+                    test: /[\\/]node_modules[\\/](?!chums.*[\\/])(.*)[\\/]/,
                     name: 'vendors',
                     chunks: 'all',
+                    priority: -10,
+                    reuseExistingChunk: true,
                 },
                 chums: {
-                    test: /[\\/](common|chums)-components[\\/]/,
+                    test: /[\\/]node_modules[\\/]chums.*[\\/]/,
                     name: 'chums',
                     chunks: 'all',
+                    priority: -0,
+                    reuseExistingChunk: true,
                 },
+                default: {
+                    minChunks: 2,
+                    priority: -10,
+                    reuseExistingChunk: true,
+                }
             }
         }
     },
