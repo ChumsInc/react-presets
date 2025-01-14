@@ -19,9 +19,9 @@ require_once ("autoload.inc.php");
  * Helpful hint for PHPStorm: set PHP Include Path to /includes of project intranet.chums.com
  */
 $ui = new WebUI2([
-    'requiredRoles' => [],
+    'requiredRoles' => [Groups::USER],
     'title' => "",
-    'description' => ''
+    'description' => ""
 ]);
 
 $ui->addManifestJSON('public/js/manifest.json')->render();

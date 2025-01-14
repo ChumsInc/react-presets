@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import "./App.css";
-import AlertList from "../ducks/alerts/AlertList";
+import AlertList from "_components/alerts/AlertList";
 import {useAppDispatch} from "./configureStore";
 
 function App() {

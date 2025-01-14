@@ -28,6 +28,13 @@ export default {
         ]
     },
     resolve: {
+        alias: {
+            "_src": path.resolve(process.cwd(), 'src'),
+            "_app": path.resolve(process.cwd(), 'src/app'),
+            "_components": path.resolve(process.cwd(), 'src/components'),
+            "_ducks": path.resolve(process.cwd(), 'src/ducks'),
+            "_types": path.resolve(process.cwd(), 'src/types'),
+        },
         extensions: ['.tsx', '.ts', '.js'],
     },
     plugins: [
@@ -35,16 +42,23 @@ export default {
     optimization: {
         splitChunks: {
             cacheGroups: {
+                react: {
+                    test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
+                    name: 'vendors-react',
+                    chunks: 'all',
+                    priority: 10,
+                },
                 defaultVendors: {
                     test: /[\\/]node_modules[\\/]/,
                     name: 'vendors',
                     chunks: 'all',
+                    priority: 0,
                 },
-                chums: {
-                    test: /[\\/](common|chums)-components[\\/]/,
-                    name: 'chums',
-                    chunks: 'all',
-                },
+                default: {
+                    minChunks: 2,
+                    priority: -10,
+                    reuseExistingChunk: true,
+                }
             }
         }
     },
