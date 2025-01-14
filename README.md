@@ -7,7 +7,7 @@ A generic template for creating React apps without the overhead of create-react-
 This includes the basics for publishing an app the Chums Intranet
 Included modules are:
 * Bootstrap 5.3 & Bootstrap Icons, React Bootstrap
-* React 18
+* React 19
 * Redux & Toolkit
 
 ## Instructions
@@ -28,4 +28,10 @@ Included modules are:
 npm install ChumsInc/b2b-types
 npm install @mui/material @emotion/react @emotion/styled
 npm install @mui/icons-material
+```
+
+## Server Side Rendering
+Check out tsconfig-paths-webpack-plugin to rename the paths in the dist directory to the full path name.
+```
+npm install -dev tsconfig-paths-webpack-plugin
 ```
