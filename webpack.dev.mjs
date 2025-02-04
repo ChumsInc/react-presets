@@ -14,11 +14,10 @@ export default merge(common, {
     mode: 'development',
     devServer: {
         allowedHosts: 'auto',
-        static: {
-            directory: path.join(process.cwd(), 'public'),
-            serveIndex: true,
-            watch: false,
-        },
+        static: [
+            {directory: path.join(process.cwd(), 'public'), watch: false},
+            {directory: path.join(process.cwd()), watch: false}
+        ],
         hot: true,
         proxy: [
             {context: ['/api'], ...localProxy},
