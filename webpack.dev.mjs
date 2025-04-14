@@ -20,7 +20,14 @@ export default merge(common, {
         ],
         hot: true,
         proxy: [
-            {context: ['/api'], ...localProxy},
+            {context: ['/api'], target: 'http://localhost:8081', ignorePath: false, changeOrigin: true, secure: false},
+            {
+                context: ['/images'],
+                target: 'https://intranet.chums.com',
+                ignorePath: false,
+                changeOrigin: true,
+                secure: true
+            },
         ],
         watchFiles: path.join(process.cwd(), 'src/**/*')
     },

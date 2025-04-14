@@ -18,11 +18,13 @@
     "noFallthroughCasesInSwitch": true,
     "noImplicitAny": true,
     "paths": {
-      "_src/*": ["./*"],
-      "_app/*": ["./app/*"],
-      "_components/*": ["./components/*"],
-      "_ducks/*": ["./ducks/*"],
-      "_types/*": ["./types/*"],
+      "@/src/*": ["./*"],
+      "@/api/*": ["./api/*"],
+      "@/app/*": ["./app/*"],
+      "@/components/*": ["./components/*"],
+      "@/ducks/*": ["./ducks/*"],
+      "@/types/*": ["./types/*"],
+      "@/utils/*": ["./utils/*"]
     },
     "resolveJsonModule": true,
     "skipLibCheck": true,

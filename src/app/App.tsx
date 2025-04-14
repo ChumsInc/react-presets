@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import "./App.css";
-import AlertList from "_components/alerts/AlertList";
+import AlertList from "@chumsinc/alert-list";
 import {useAppDispatch} from "./configureStore";
 
 function App() {
@@ -11,7 +11,7 @@ function App() {
 
     return (
         <div>
-            <AlertList/>
+            <AlertList />
         </div>
     );
 }
