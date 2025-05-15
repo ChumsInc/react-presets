@@ -18,11 +18,13 @@
     "noFallthroughCasesInSwitch": true,
     "noImplicitAny": true,
     "paths": {
-      "@/src/*": ["./*"],
       "@/api/*": ["./api/*"],
       "@/app/*": ["./app/*"],
       "@/components/*": ["./components/*"],
       "@/ducks/*": ["./ducks/*"],
+      "@/hooks/*": ["./hooks/*"],
+      "@/slices/*": ["./slices/*"],
+      "@/src/*": ["./*"],
       "@/types/*": ["./types/*"],
       "@/utils/*": ["./utils/*"]
     },

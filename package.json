@@ -7,6 +7,7 @@
     "@chumsinc/ui-utils": "^2.0.4",
     "@emotion/react": "^11.14.0",
     "@reduxjs/toolkit": "^2.0.1",
+    "@vitejs/plugin-react": "^4.4.1",
     "chums-types": "github:ChumsInc/chums-types",
     "classnames": "^2.3.2",
     "dayjs": "^1.11.10",
@@ -15,9 +16,10 @@
     "react": "^19.0.0",
     "react-bootstrap": "^2.10.5",
     "react-dom": "^19.0.0",
-    "react-error-boundary": "^5.0.0",
+    "react-error-boundary": "^6.0.0",
     "react-redux": "^9.0.4",
-    "redux": "^5.0.1"
+    "redux": "^5.0.1",
+    "vite": "^6.3.5"
   },
   "scripts": {
     "start": "webpack serve --config webpack.dev.mjs --progress",
