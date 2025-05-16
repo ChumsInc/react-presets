@@ -2,7 +2,7 @@
 <html lang="en-us">
 <head>
     <meta charSet="utf-8" />
-    <title>Chums App</title>
+    <title>App Name - Localhost</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel="stylesheet" href="https://intranet.chums.com/node_modules/bootstrap-icons/font/bootstrap-icons.css">
@@ -13,7 +13,31 @@
     <script src="https://intranet.chums.com/js/preferred-theme.js"></script>
 </head>
 <body>
-    <div id="app" class="container-fluid" style="margin-top: 50px;"></div>
-    <script type="module" src="src/index.tsx"></script>
+    <header class="site-header">
+        <nav class="navbar navbar-chums navbar-expand-lg navbar-light bg-body-tertiary scroll-top">
+            <div class="site-logo">
+                <div class="logo-center">
+                    <a href="/">
+                        <img class="logo" id="navbar-logo" alt="Chums Logo"
+                             src="https://intranet.chums.com/images/logos/Chums-Logo-Badge-Red-RGB.png"
+                             style="margin-top: 0;">
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main class="container-fluid">
+        <div>
+            <div>
+                <h1 id="top-title">[App Name]</h1>
+                <div id="PageDescription">
+                    <span id="PageDescriptionText"></span>
+                </div>
+            </div>
+        </div>
+        <div id="app">
+            <div class="alert alert-info"><strong>Loading</strong> app.</div>
+        </div>
+    </main>
 </body>
 </html>
