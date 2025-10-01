@@ -14,7 +14,7 @@ require_once "autoload.inc.php";
 $ui = new WebUI2([
     "contentFile" => "body.inc.php",
     "requiredRoles" => [Groups::SALES],
-    "title" => "Amazon Item Mapping Tool"
+    "title" => "App Name"
 ]);
 
 $ui->addViteManifest()

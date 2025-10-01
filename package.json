@@ -24,6 +24,7 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
+    "preinstall": "npm init",
     "preview": "vite preview",
     "version": "auto-changelog -p && git add CHANGELOG.md"
   },
