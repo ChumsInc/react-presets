@@ -1,6 +1,6 @@
 import {configureStore} from '@reduxjs/toolkit'
 import {combineReducers} from "redux";
-import {TypedUseSelectorHook, useDispatch, useSelector} from "react-redux";
+import {type TypedUseSelectorHook, useDispatch, useSelector} from "react-redux";
 import {alertsSlice} from "@chumsinc/alert-list";
 
 const rootReducer = combineReducers({

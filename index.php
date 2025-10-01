@@ -1,27 +1,21 @@
 <?php
 /**
- * @package Chums
- * @subpackage Routings
+ * @package Chums Inc
+ * @subpackage Imprint Status
  * @author Steve Montgomery
- * @copyright Copyright &copy; 2012, steve
+ * @copyright Copyright &copy; 2011, steve
  */
 
 use chums\ui\WebUI2;
+use chums\ui\JSOptions;
 use chums\user\Groups;
 
-require_once ("autoload.inc.php");
-
-/**
- * @TODO: Assign required roles
- * @TODO: Assign Page Title
- * @TODO: Add description if required
- *
- * Helpful hint for PHPStorm: set PHP Include Path to /includes of project intranet.chums.com
- */
+require_once "autoload.inc.php";
 $ui = new WebUI2([
-    'requiredRoles' => [Groups::USER],
-    'title' => "",
-    'description' => ""
+    "contentFile" => "body.inc.php",
+    "requiredRoles" => [Groups::SALES],
+    "title" => "Amazon Item Mapping Tool"
 ]);
 
-$ui->addManifestJSON('public/js/manifest.json')->render();
+$ui->addViteManifest()
+    ->render();

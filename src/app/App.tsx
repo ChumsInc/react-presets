@@ -1,17 +1,12 @@
-import React, {useEffect} from 'react';
-import "./App.css";
-import AlertList from "@chumsinc/alert-list";
-import {useAppDispatch} from "./configureStore";
+import AppAlertList from "@/components/AppAlertList.tsx";
 
 function App() {
-    const dispatch = useAppDispatch();
-    useEffect(() => {
-
-    }, []);
-
     return (
         <div>
-            <AlertList />
+            <AppAlertList/>
+            <div>
+                App content goes here.
+            </div>
         </div>
     );
 }

@@ -6,24 +6,25 @@
     "@chumsinc/sortable-tables": "^2.0.7",
     "@chumsinc/ui-utils": "^2.0.4",
     "@emotion/react": "^11.14.0",
+    "@mantine/hooks": "^8.2.1",
     "@reduxjs/toolkit": "^2.0.1",
-    "@vitejs/plugin-react": "^4.4.1",
     "chums-types": "github:ChumsInc/chums-types",
     "classnames": "^2.3.2",
     "dayjs": "^1.11.10",
     "decimal.js": "^10.4.3",
     "numeral": "^2.0.6",
-    "react": "^19.0.0",
-    "react-bootstrap": "^2.10.5",
-    "react-dom": "^19.0.0",
+    "react": "^19.1.0",
+    "react-bootstrap": "^2.10.10",
+    "react-dom": "^19.1.0",
     "react-error-boundary": "^6.0.0",
-    "react-redux": "^9.0.4",
-    "redux": "^5.0.1",
-    "vite": "^6.3.5"
+    "react-redux": "^9.2.0",
+    "redux": "^5.0.1"
   },
   "scripts": {
-    "start": "webpack serve --config webpack.dev.mjs --progress",
-    "build": "webpack --config webpack.prod.mjs --progress",
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "eslint .",
+    "preview": "vite preview",
     "version": "auto-changelog -p && git add CHANGELOG.md"
   },
   "browserslist": {
@@ -39,38 +40,26 @@
     ]
   },
   "devDependencies": {
-    "@eslint/js": "^9.8.0",
-    "@types/node": "^22.1.0",
-    "@types/numeral": "^2.0.3",
-    "@types/react": "^19.0.7",
-    "@types/react-dom": "^19.0.3",
+    "@eslint/js": "^9.30.1",
+    "@types/node": "^24.1.0",
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
+    "@vitejs/plugin-react": "^5.0.4",
     "auto-changelog": "^2.4.0",
-    "bootstrap": "^5.3.2",
-    "bootstrap-icons": "^1.11.1",
-    "css-loader": "^7.1.2",
-    "eslint": "^9.8.0",
-    "eslint-plugin-react": "^7.35.0",
-    "globals": "^16.0.0",
-    "sass-loader": "^16.0.0",
-    "style-loader": "^4.0.0",
-    "terser-webpack-plugin": "^5.3.9",
-    "ts-loader": "^9.4.4",
-    "typescript": "^5.2.2",
-    "typescript-eslint": "^8.0.1",
-    "webpack": "^5.88.2",
-    "webpack-bundle-analyzer": "^4.9.1",
-    "webpack-cli": "^6.0.1",
-    "webpack-dev-server": "^5.0.4",
-    "webpack-manifest-plugin": "^5.0.0",
-    "webpack-merge": "^6.0.1"
+    "bootstrap": "^5.3.7",
+    "bootstrap-icons": "^1.13.1",
+    "eslint": "^9.30.1",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.20",
+    "globals": "^16.3.0",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.35.1",
+    "vite": "^7.0.4"
   },
   "auto-changelog": {
     "template": "changelog-template.hbs",
     "unreleased": true,
     "commitLimit": false,
     "breakingPattern": "BREAKING CHANGE:"
-  },
-  "overrides": {
-    "eslint": "^9.8.0"
   }
 }
