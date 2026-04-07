@@ -94,7 +94,6 @@ export default defineConfig(({command, isSsrBuild}) => {
             outDir: 'dist',
             emptyOutDir: true,
             rolldownOptions: {
-                input: './src/client/index.tsx',
                 plugins: [visualizer({filename: 'stats.html', gzipSize: true})],
                 output: {
                     codeSplitting: {
