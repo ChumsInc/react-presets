@@ -59,7 +59,7 @@
     "rollup-plugin-visualizer": "^7.0.1",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.57.2",
-    "vite": "^8.0.3"
+    "vite": "^8.0.7"
   },
   "auto-changelog": {
     "template": "changelog-template.hbs",

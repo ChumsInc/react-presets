@@ -88,8 +88,10 @@ export default defineConfig(({command, isSsrBuild}) => {
     return defineConfig({
         ...commonConfig,
         build: {
-            // minify: false,
-            outDir: 'dist-client',
+            /**
+             * @TODO: if using both server-side rendering and client side rendering, then dist-client may be more appropriate
+             */
+            outDir: 'dist',
             emptyOutDir: true,
             rolldownOptions: {
                 input: './src/client/index.tsx',
@@ -97,8 +99,9 @@ export default defineConfig(({command, isSsrBuild}) => {
                 output: {
                     codeSplitting: {
                         groups: [
-                            {name: 'react', test: /node_modules\/(react|react-dom)/},
-                            {name: 'mui', test: /node_modules\/@mui/},
+                            {name: 'react', test: /node_modules\/(react|react-dom)\//, priority: 30},
+                            {name: 'vendor-ui', test: /node_modules\/(react-bootstrap|@emption)\//, priority: 20},
+                            {name: 'chums', test: /node_modules\/@chumsinc/, priority: 10},
                             {name: 'vendor', test: /node_modules/},
                         ]
                     }
